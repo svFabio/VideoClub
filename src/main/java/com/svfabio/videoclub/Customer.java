@@ -29,26 +29,7 @@ class Customer {
             double thisAmount = 0;
             Rental each = rentals.nextElement();
 
-            // Determinar los montos para cada línea
-            switch (each.getMovie().getPriceCode()) {
-                case Movie.REGULAR:
-                    thisAmount += 2;
-                    if (each.getDaysRented() > 2) {
-                        thisAmount += (each.getDaysRented() - 2) * 1.5;
-                    }
-                    break;
-                case Movie.NEW_RELEASE:
-                    thisAmount += each.getDaysRented() * 3;
-                    break;
-                case Movie.CHILDRENS:
-                    thisAmount += 1.5;
-                    if (each.getDaysRented() > 3) {
-                        thisAmount += (each.getDaysRented() - 3) * 1.5;
-                    }
-                    break;
-            }
-
-            totalAmount += thisAmount;
+            thisAmount = each.getCharge();
             frequentRenterPoints++;
 
             // Puntos adicionales por nueva película alquilada más de un día
@@ -62,4 +43,5 @@ class Customer {
         result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
         return result;
     }
+
 }
